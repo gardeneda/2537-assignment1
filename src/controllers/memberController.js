@@ -8,7 +8,7 @@ const userCollection = database
   .db(process.env.MONGODB_DATABASE)
   .collection("users");
 
-const imageNumber = 5;
+const imageNumber = 2;
 /* End of Required Packages and Constant Declaration */
 /* ///////////////////////////////////////////////// */
 
