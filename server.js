@@ -3,7 +3,7 @@
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 
-const client = require(`${__dirname}/../config/databaseConfig`);
+const client = require(`${__dirname}/src/config/databaseConfig`);
 
 const app = require(`${__dirname}/src/middleware/app`);
 
