@@ -18,8 +18,8 @@ const imageNumber = 5;
 */
 exports.createHTML = (req, res, next) => {
   const randomNumber = Math.trunc(Math.random() * imageNumber) + 1;
-    const imagePath = `/img/cat-${randomNumber}.jpg`;
-    console.log(randomNumber);
+  const imagePath = `/img/cat-${randomNumber}.jpg`;
+  console.log(randomNumber);
   const html = `
         <h1>Hello, ${req.session.username}.</h1>
         </br>

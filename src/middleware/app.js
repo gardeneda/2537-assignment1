@@ -56,8 +56,12 @@ app.use("/logout", (req, res) => {
 
 app.use('/', (req, res) => {
 	if (req.session.authenticated) {
-		res.redirect('/member');
-		return;
+		const html = `
+		<button onclick="window.location.href='/member'">Member Page</button>
+		</br>
+		<button onclick="window.location.href='/logout'">Log Out</button>
+		`; 
+		res.send()
 	} else {
 		const html = `
 		<button onclick="window.location.href='/signup'">Sign up</button>
