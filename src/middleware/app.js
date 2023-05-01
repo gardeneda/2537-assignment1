@@ -40,7 +40,7 @@ app.use(
   })
 );
 
-app.use('/img', express.static(`${__dirname}/../img`));
+app.use('/img', express.static(`${__dirname}/../public/img`));
 
 app.use("/signup", signupRouter);
 
