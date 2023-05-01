@@ -40,23 +40,24 @@ app.use(
   })
 );
 
+app.use('/img', express.static(`${__dirname}/../img`));
 
 app.use("/signup", signupRouter);
 
 app.use("/login", loginRouter);
+
+app.use("/member", memberRouter);
 
 app.use("/logout", (req, res) => {
 	req.session.destroy();
 	res.redirect("/");
 });
 
-app.use("/member", memberRouter);
-
 
 app.use('/', (req, res) => {
 	if (req.session.authenticated) {
 		res.redirect('/member');
-
+		return;
 	} else {
 		const html = `
 		<button onclick="window.location.href='/signup'">Sign up</button>

@@ -69,7 +69,7 @@ exports.login = async (req, res, next) => {
 
   const result = await userCollection
     .find({ email: email })
-    .project({ email: 1, password: 1, _id: 1 })
+    .project({ email: 1, password: 1, _id: 1, username: 1})
     .toArray();
 
   console.log(result);
@@ -85,11 +85,11 @@ exports.login = async (req, res, next) => {
     console.log("correct password");
     req.session.authenticated = true;
     req.session.email = email;
+    req.session.username = result[0].username;
     req.session.cookie.maxAge = expireTime;
 
     res.redirect("/member");
     return;
-
   } else {
     console.log("incorrect password");
     res.send(

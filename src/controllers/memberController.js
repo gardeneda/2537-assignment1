@@ -18,9 +18,9 @@ const imageNumber = 5;
     Send the user client the main landing page after you log-in.
     Attaches a random picture when signed in.
 */
-exports.createHTML = (req, res, next, val) => {
+exports.createHTML = (req, res, next) => {
     const randomNumber = Math.trunc(Math.random() * imageNumber); 
-    res.send(`./member/${randomNumber}`);
+    res.redirect(`/member/${randomNumber}`);
 }
 
 /* 
@@ -38,12 +38,15 @@ exports.checkCookie = (req, res, next) => {
 /* 
     Produces a page with randomly generated cats.
 */
-exports.producePage = (req, res, next, val) => {
-    const imagePath = `${__dirname}/../img/cat-${val}` 
+exports.producePage = (req, res, next) => {
+    const randomNumber = req.params.id;
+    const imagePath = `/img/cat-${randomNumber}.jpg` 
     const html = `
         <h1>Hello, ${req.session.username}.</h1>
         </br>
-        <img src=${imagePath} alt="Picture of a cat"/>
+        <img width="300px" src=${imagePath} alt="Picture of a cat"/>
+        </br>
+        <button onclick="window.location.href='/logout'">Log Out</button>
     `;
     res.send(html);
 };

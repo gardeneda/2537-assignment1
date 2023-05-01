@@ -8,6 +8,6 @@ router
   .route("/")
   .get(memberController.checkCookie, memberController.createHTML);
 
-router.route("/:id").get(memberController.producePage);
+router.route("/:id").get(memberController.checkCookie, memberController.producePage);
 
 module.exports = router;

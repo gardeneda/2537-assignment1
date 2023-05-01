@@ -46,7 +46,11 @@ exports.checkInput = (req, res, next) => {
   if (validationResult.error != null) {
     console.log(validationResult);
     const error = validationResult.error.details[0].message;
-    res.send(`Invalid Input: ${error}. <a href='/signup'>Try Again</a>`);
+    res.send(`
+      Invalid Input: ${error}. 
+      </br>
+      <a href='/signup'>Try Again</a>
+    `);
     return;
   }
   next();
@@ -111,6 +115,7 @@ exports.createUser = async (req, res) => {
   console.log("Inserted User");
   var html = `
     Successfully created user
+    </br>
     <a href="/login">Log in</a>
     `;
 

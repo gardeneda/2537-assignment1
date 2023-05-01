@@ -132,3 +132,4 @@ dist
 # User-Defined Exceptions
 .env
 package-lock.json
+.prettierrc
