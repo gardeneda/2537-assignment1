@@ -8,7 +8,7 @@ const userCollection = database
   .db(process.env.MONGODB_DATABASE)
   .collection("users");
 
-const imageNumber = 2;
+const imageNumber = 5;
 /* End of Required Packages and Constant Declaration */
 /* ///////////////////////////////////////////////// */
 
@@ -18,7 +18,8 @@ const imageNumber = 2;
 */
 exports.createHTML = (req, res, next) => {
   const randomNumber = Math.trunc(Math.random() * imageNumber) + 1;
-  const imagePath = `/img/cat-${randomNumber}.jpg`;
+    const imagePath = `/img/cat-${randomNumber}.jpg`;
+    console.log(randomNumber);
   const html = `
         <h1>Hello, ${req.session.username}.</h1>
         </br>
