@@ -61,7 +61,8 @@ app.use('/', (req, res) => {
 		</br>
 		<button onclick="window.location.href='/logout'">Log Out</button>
 		`; 
-		res.send()
+		res.send(html)
+		
 	} else {
 		const html = `
 		<button onclick="window.location.href='/signup'">Sign up</button>
