@@ -29,6 +29,11 @@ var mongoStore = MongoStore.create({
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+	req.requestTime = new Date().toISOString();
+	next();
+});
+
 // Snippet of code here referenced from sample of
 // Assignment 1 in Patrick Guichon's COMP 2537
 app.use(
@@ -40,7 +45,8 @@ app.use(
   })
 );
 
-app.use('/img', express.static(`${__dirname}/../public/img`));
+app.use("/img", express.static(`${__dirname}/../public/img`));
+
 
 app.use("/signup", signupRouter);
 
@@ -53,34 +59,33 @@ app.use("/logout", (req, res) => {
 	res.redirect("/");
 });
 
-
-app.use('/', (req, res) => {
-	if (req.session.authenticated) {
-		const html = `
+app.get("/", (req, res) => {
+  if (req.session.authenticated) {
+	const html = `
 		<button onclick="window.location.href='/member'">Member Page</button>
 		</br>
 		<button onclick="window.location.href='/logout'">Log Out</button>
-		`; 
-		res.send(html)
-		
-	} else {
-		const html = `
+		`;
+	  res.send(html);
+	  
+  } else {
+	const html = `
 		<button onclick="window.location.href='/signup'">Sign up</button>
 		</br>
 		<button onclick="window.location.href='/login'">Log in</button>
-		`
-		res.send(html);
-	}
+		`;
+	res.send(html);
+  }
 });
 
-app.use("*", (req, res) => {
+app.get("*", (req, res) => {
   const html = `
 		<h2>Page Does Not Exist - 404</h2>
 		</br>
 		<a href='/'>Go back to main</a>
 	`;
 
-  res.status(400);
+  res.status(404);
   res.send(html);
 });
 
