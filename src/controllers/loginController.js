@@ -14,7 +14,7 @@ const userCollection = database
 // Snippet of code here referenced from sample of
 // Assignment 1 in Patrick Guichon's COMP 2537
 //expires after 1 day  (hours * minutes * seconds * millis)
-const expireTime = 24 * 60 * 60 * 1000;
+const expireTime = 60 * 60 * 1000;
 /* End of Required Packages and Constant Declaration */
 /* ///////////////////////////////////////////////// */
 
