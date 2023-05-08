@@ -12,6 +12,8 @@ const userCollection = database
   .collection("users");
 
 const saltRounds = 12;
+const status400 = "400 - Bad Request";
+
 /* End of Required Packages and Constant Declaration */
 /* ///////////////////////////////////////////////// */
 
@@ -25,13 +27,31 @@ exports.checkInput = (req, res, next) => {
   const password = req.body.password;
 
   if (!username) {
-    res.send(`Please enter a username. <a href='/signup'>Try Again</a>`);
+    res.render(
+      'error',
+      {
+        statusCode: status400,
+        message: 'Please enter a valid name.'
+      }
+    );
     return;
   } else if (!email) {
-    res.send(`Please enter a email. <a href='/signup'>Try Again</a>`);
+    res.render(
+      'error',
+      {
+        statusCode: status400,
+        message: 'Please enter a valid email.'
+      }
+    );
     return;
   } else if (!password) {
-    res.send(`Please enter a password. <a href='/signup'>Try Again</a>`);
+    res.render(
+      'error',
+      {
+        statusCode: status400,
+        message: 'Please enter a password.'
+      }
+    );
     return;
   }
 
@@ -46,11 +66,13 @@ exports.checkInput = (req, res, next) => {
   if (validationResult.error != null) {
     console.log(validationResult);
     const error = validationResult.error.details[0].message;
-    res.send(`
-      Invalid Input: ${error}. 
-      </br>
-      <a href='/signup'>Try Again</a>
-    `);
+    res.render(
+      'error',
+      {
+        statusCode: status400,
+        message: error
+      }
+    );
     return;
   }
   next();
@@ -79,19 +101,8 @@ exports.checkDuplicate = async (req, res, next) => {
     when it asks for /signup
 */
 exports.createHTML = (req, res) => {
-  var html = `
-    <form action='/signup' method='post'>
-      <fieldset>
-        <legend>Create New Account</legend>
-        <input name='username' type='text' placeholder='name'>
-        <input name='email' type='text' placeholder='email'>
-        <input name='password' type='password' placeholder='password'>
-        <button>Submit</button>
-      </fieldset>
-    </form>
 
-    `;
-  res.send(html);
+  res.render("signup");
 };
 
 // Snippet of code here referenced from sample of
@@ -110,14 +121,9 @@ exports.createUser = async (req, res) => {
     username: username,
     email: email,
     password: hashedPassword,
+    userType: "user"
   });
 
   console.log("Inserted User");
-  var html = `
-    Successfully created user
-    </br>
-    <a href="/login">Log in</a>
-    `;
-
-  res.send(html);
+  res.render("signup-success");
 };

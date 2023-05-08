@@ -1,0 +1,40 @@
+<div>
+  <div class="d-inline-flex">
+    <h4><%= user.username %></h4>
+    &nbsp;
+    &nbsp;
+    <form action="/admin/<%= user._id.toString()%>/0" method="post">
+      <button
+        class="btn 
+        <% if (user.userType === "user") {  %>
+            btn-primary 
+        <% } else { %>
+            btn-outline-secondary
+        <% } %>
+        d-inline-flex align-items-center"
+        name=<%= user.email  %>
+        type="submit"
+      >
+        User
+      </button>
+    </form>
+    &nbsp;
+    <form action="/admin/<%= user._id.toString()%>/1" method="post">
+      <button
+        class="btn 
+        <% if (user.userType === "admin") {  %>
+            btn-primary 
+        <% } else { %>
+            btn-outline-secondary
+        <% } %>
+        d-inline-flex align-items-center"
+        name=<%= user.email %>
+        type="submit"
+      >
+        Admin
+      </button>
+    </form>
+  </div>
+</div>
+<div>&nbsp;</div>
+

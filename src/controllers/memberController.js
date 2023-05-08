@@ -17,29 +17,18 @@ const imageNumber = 4;
     Attaches a random picture when signed in.
 */
 exports.createHTML = (req, res, next) => {
-  const randomNumber = Math.trunc(Math.random() * imageNumber) + 1;
-  const imagePath = `/img/cat-${randomNumber}.jpg`;
-  console.log(randomNumber);
-  const html = `
-        <h1>Hello, ${req.session.username}.</h1>
-        </br>
-        <img width="300px" src=${imagePath} alt="Picture of a cat"/>
-        </br>
-        <button onclick="window.location.href='/logout'">Log Out</button>
-    `;
-  res.send(html);
-};
-
-/* 
-    Checks if the user has a valid session/cookie.
-    If not redirects them to the login page.
-*/
-exports.checkCookie = (req, res, next) => {
-  if (!req.session.authenticated) {
-    res.redirect("/");
-    return;
-  }
-  next();
+  // const randomNumber = Math.trunc(Math.random() * imageNumber) + 1;
+  // const imagePath = `/img/cat-${randomNumber}.jpg`;
+  // console.log(randomNumber);
+  // const html = `
+  //       <h1>Hello, ${req.session.username}.</h1>
+  //       </br>
+  //       <img width="300px" src=${imagePath} alt="Picture of a cat"/>
+  //       </br>
+  //       <button onclick="window.location.href='/logout'">Log Out</button>
+  //   `;
+  // res.send(html);
+  res.render("member");
 };
 
 /* 

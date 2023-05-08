@@ -1,0 +1,29 @@
+<%- include("templates/header") %>
+
+<div class="p-5 text-center bg-body-tertiary rounded-3">
+    <svg
+      class="bi mt-4 mb-3"
+      style="color: var(--bs-indigo)"
+      width="100"
+      height="100"
+    >
+      <use xlink:href="#bootstrap"></use>
+    </svg>
+    <h1 class="text-body-emphasis">403 - Forbidden</h1>
+    <p class="col-lg-8 mx-auto fs-5 text-muted">
+        You do not have authorization to access this page.
+      <br />
+      <br />
+    </p>
+    <div class="d-inline-flex gap-2 mb-5 text-center">
+      <a
+        href="/"
+        class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill"
+      >
+        Main Page &nbsp;
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+
+<%- include("templates/footer") %>

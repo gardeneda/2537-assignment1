@@ -1,0 +1,16 @@
+<%- include("templates/header") %>
+
+<div class="p-5 bg-body-tertiary rounded-3">
+
+    <h3> Users:</h3>
+    <hr/>
+    
+    <% let i=0; %>
+    <% for(i=0; i < users.length; i++) { %>
+    <%- include('templates/user', { user: users[i] })  %> 
+    <% } %> 
+    
+
+</div>
+
+<%- include("templates/footer") %>

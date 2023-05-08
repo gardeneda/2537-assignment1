@@ -1,6 +1,7 @@
 const express = require("express");
 
 const signupController = require(`${__dirname}/../controllers/signupController`);
+const validation = require(`${__dirname}/../utils/validation`);
 
 const router = express.Router();
 
